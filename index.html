@@ -2,30 +2,48 @@
 <html>
 	<head>
 		<title>Joshua Minter</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Oswald">
-		<link rel="stylesheet" href="grid.min.css">
-		<link rel="stylesheet" href="style.css">
-		<script src="script.js"></script>
+		<link rel="stylesheet" href="res/style/normalize.css">
+		<link rel="stylesheet" href="res/style/main.css">
+		<script src="res/script/main.js"></script>
+		<script src="res/script/earth.js"></script>
+
+		<script type="x-shader/x-vertex" class="vertex">
+			attribute vec2 vpos;
+			varying vec2 fpos;
+
+			void main() {
+				fpos = vpos;
+				gl_Position = vec4(vpos, 0, 1);
+			}
+		</script>
+		<script type="x-shader/x-fragment" class="fragment">
+			precision mediump float;
+			varying vec2 fpos;
+
+			void main() {
+				gl_FragColor = vec4(fpos, 0, 1);
+			}
+		</script>
 	</head>
 	<body>
-		<div class="container">
-			<div class="row">
-				<h1 class="col-12 center name">
-					Joshua Minter
-				</h1>
+		<div class="content">
+			<div class="name">
+				Joshua Minter
 			</div>
-			<div class="row">
-				<h2 class="col-4 center section">
+			<div class="menu">
+				<a class="section" href="#about">
 					About
-				</h2>
-				<h2 class="col-4 center section">
+				</a>
+				<a class="section" href="#games">
 					Games
-				</h2>
-				<h2 class="col-4 center section">
+				</a>
+				<a class="section" href="#other">
 					Other
-				</h2>
+				</a>
 			</div>
+			<canvas class="earth"></canvas>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,58 @@
+body {
+	background-color: black;
+	color: #888;
+}
+
+.content {
+	width: 40%;
+	margin: 0 auto;
+}
+
+.name {
+	text-align: center;
+	font: 6vw "Lobster", cursive;
+}
+
+.menu {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.section {
+	font: 2vw "Oswald", sans-serif;
+	text-decoration: none;
+	transition: 0.5s color;
+}
+
+.section:visited {
+	color: inherit;
+}
+
+.section:hover {
+	color: #FFF;
+}
+
+.earth {
+	margin: 20%;
+	margin-bottom: 0;
+	width: 60%;
+}
+
+.res {
+	display: none;
+}
+
+/* portrait */
+@media only screen and (orientation: portrait) {
+	.content {
+		width: 100%;
+	}
+
+	.name {
+		font-size: 15vw;
+	}
+
+	.section {
+		font-size: 5vw;
+	}
+}

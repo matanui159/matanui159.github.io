@@ -4,28 +4,8 @@
 		<title>Joshua Minter</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Oswald">
-		<link rel="stylesheet" href="res/style/normalize.css">
-		<link rel="stylesheet" href="res/style/main.css">
-		<script src="res/script/main.js"></script>
-		<script src="res/script/earth.js"></script>
-
-		<script type="x-shader/x-vertex" class="vertex">
-			attribute vec2 vpos;
-			varying vec2 fpos;
-
-			void main() {
-				fpos = vpos;
-				gl_Position = vec4(vpos, 0, 1);
-			}
-		</script>
-		<script type="x-shader/x-fragment" class="fragment">
-			precision mediump float;
-			varying vec2 fpos;
-
-			void main() {
-				gl_FragColor = vec4(fpos, 0, 1);
-			}
-		</script>
+		<link rel="stylesheet" href="normalize.css">
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<div class="content">
@@ -44,6 +24,27 @@
 				</a>
 			</div>
 			<canvas class="earth"></canvas>
+
+			<script type="x-shader/x-vertex" class="vertex">
+				attribute vec2 vpos;
+				varying vec2 fpos;
+	
+				void main() {
+					fpos = vpos;
+					gl_Position = vec4(vpos, 0, 1);
+				}
+			</script>
+			<script type="x-shader/x-fragment" class="fragment">
+				precision mediump float;
+				varying vec2 fpos;
+
+				uniform sampler2D iday;
+	
+				void main() {
+					gl_FragColor = texture2D(iday, fpos);
+				}
+			</script>
+			<script src="script.js" async></script>
 		</div>
 	</body>
 </html>

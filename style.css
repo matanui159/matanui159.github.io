@@ -10,7 +10,7 @@ body {
 
 .name {
 	text-align: center;
-	font: 6vw "Lobster", cursive;
+	font: 6vw "Lobster", sans-serif;
 }
 
 .menu {
@@ -24,7 +24,7 @@ body {
 	transition: 0.5s color;
 }
 
-.section:visited {
+.section {
 	color: inherit;
 }
 

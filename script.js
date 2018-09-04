@@ -4,11 +4,15 @@ function $(name) {
 
 function resize() {
 	var earth = $("earth")
+	earth.width = earth.parentElement.offsetWidth
 	earth.height = earth.width
+	gl.viewport(0, 0, earth.width, earth.height)
 }
 window.addEventListener("resize", resize)
-resize()
 
+/*
+ * Earth rendering
+ */
 function compile_shader(type, name) {
 	var shader = gl.createShader(type)
 	gl.shaderSource(shader, $(name).innerHTML)
@@ -18,6 +22,9 @@ function compile_shader(type, name) {
 }
 
 function draw(time) {
+	var uniform = gl.getUniformLocation(program, "time")
+	gl.clear(gl.COLOR_BUFFER_BIT)
+	gl.uniform1f(uniform, (time / 3000) % 1)
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
 	requestAnimationFrame(draw)
 }
@@ -43,28 +50,32 @@ gl.bufferData(gl.ARRAY_BUFFER, buffer_data, gl.STATIC_DRAW)
 var attr = gl.getAttribLocation(program, "vpos")
 gl.enableVertexAttribArray(attr)
 gl.vertexAttribPointer(attr, 2, gl.BYTE, false, 0, 0)
+resize()
 requestAnimationFrame(draw)
 
+/*
+ * Asset loading
+ */
 var images = [
 	{
 		name: "day",
 		format: "jpg",
-		default: [0, 0, 1, 1]
+		default: [0.1, 0.2, 0.3, 1.0]
 	},
 	{
 		name: "night",
 		format: "jpg",
-		default: [0, 0, 0.5, 1]
+		default: [0.0, 0.0, 0.0, 1.0]
 	},
 	{
 		name: "normal",
 		format: "jpg",
-		default: [0, 0, 1, 1]
+		default: [0.0, 0.0, 1.0, 1.0]
 	},
 	{
 		name: "spec",
 		format: "jpg",
-		default: [0, 0, 0, 1]
+		default: [0.0, 0.0, 0.0, 1.0]
 	}
 ]
 
@@ -89,6 +100,7 @@ for (var i = 0; i < images.length; ++i) {
 	gl.uniform1i(uniform, i)
 }
 gl.deleteFramebuffer(frame)
+gl.clearColor(0, 0, 0, 0)
 
 function load_image(index) {
 	if (index < images.length) {

@@ -63,7 +63,11 @@
 						mod(atan(real.z, real.x) / PI2 + time, 1.0),
 						real.y / -2.0 + 0.5
 					);
-					vec3 normal = normalize(real + texture2D(inormal, coord).xyz - 0.5);
+
+					vec3 T = normalize(vec3(real.z, 0, -real.x));
+					vec3 N = real;
+					vec3 B = cross(N, T);
+					vec3 normal = mat3(T, B, N) * (texture2D(inormal, coord).xyz / 2.0 - 0.25);
 
 					vec4 result = mix(
 						texture2D(inight, coord),

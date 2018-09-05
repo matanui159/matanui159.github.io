@@ -10,7 +10,6 @@ function $(name, list) {
 var bit_count = 1
 function resize() {
 	var count = window.innerHeight / $("bit").offsetHeight
-	console.log(count)
 	for (; bit_count < count; ++bit_count) {
 		console.log()
 		var bit = document.createElement("div")

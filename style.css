@@ -1,35 +1,56 @@
 body {
 	background-color: black;
-}
-
-.content {
-	height: 100vh;
+	padding: 32px;
 }
 
 .title {
-	position: absolute;
-	left: 64px;
-	bottom: 64px;
+	display: inline-block;
 }
 
 .name {
-	font: 128px 'Lobster', sans-serif;
+	font: 64px 'Lobster', sans-serif;
 	color: white;
 }
 
 .desc {
-	font: 32px 'Raleway', sans-serif;
+	font: 600 16px 'Raleway', sans-serif;
 	color: #444;
+	text-align: center;
 }
 
 .binary {
 	position: fixed;
 	top: 0;
-	right: 64px;
+	right: 32px;
 	height: 100vh;
 }
 
 .bit {
-	font: 64px 'Roboto Mono', monospace;
+	font: 32px 'Roboto Mono', monospace;
 	color: #F24;
+}
+
+@media only screen and (max-width: 512px) {
+	body {
+		padding: 8px
+	}
+
+	.title {
+		display: block;
+	}
+
+	.name {
+		text-align: center;
+		font-size: 16vw;
+	}
+
+	.desc {
+		font-size: 4vw;
+	}
+
+	/* For some reason display: none; is freezing Chrome */
+	.binary {
+		height: 0;
+		overflow: hidden;
+	}
 }

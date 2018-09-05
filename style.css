@@ -1,20 +1,21 @@
 body {
 	background-color: black;
-	padding: 32px;
 }
 
-.title {
-	display: inline-block;
+.content {
+	width: 768px;
+	margin: 32px auto;
 }
 
 .name {
-	font: 64px 'Lobster', sans-serif;
+	font: 128px 'Lobster', sans-serif;
 	color: white;
+	text-align: center;
 }
 
 .desc {
-	font: 600 16px 'Raleway', sans-serif;
-	color: #444;
+	font: 32px 'Raleway', sans-serif;
+	color: #888;
 	text-align: center;
 }
 
@@ -23,24 +24,61 @@ body {
 	top: 0;
 	right: 32px;
 	height: 100vh;
-}
-
-.bit {
 	font: 32px 'Roboto Mono', monospace;
 	color: #F24;
 }
 
-@media only screen and (max-width: 512px) {
-	body {
-		padding: 8px
+.grid-box {
+	float: left;
+	width: 46%;
+	margin: 2%;
+	background-color: rgba(255, 255, 255, 0.25);
+	position: relative;
+	bottom: 0;
+	transition: background-color 0.5s, bottom 0.5s;
+}
+
+.grid-box-hover:hover {
+	background-color: rgba(255, 255, 255, 0.75);
+	bottom: 8px;
+}
+
+.button {
+	display: block;
+	padding: 16px;
+	font: 64px 'Raleway', sans-serif;
+	color: #FFF;
+	text-align: center;
+	text-decoration: none;
+}
+
+/* Tablet */
+@media only screen and (max-width: 1024px) {
+	.content {
+		width: 75%;
+		margin-top: 8px;
+	}
+	
+	.name {
+		font-size: 12vw;
 	}
 
-	.title {
-		display: block;
+	.desc {
+		font-size: 3vw;
+	}
+
+	.button {
+		font-size: 6vw;
+	}
+}
+
+/* Mobile */
+@media only screen and (max-width: 512px) and (orientation: portrait) {
+	.content {
+		width: 100%;
 	}
 
 	.name {
-		text-align: center;
 		font-size: 16vw;
 	}
 
@@ -48,9 +86,14 @@ body {
 		font-size: 4vw;
 	}
 
-	/* For some reason display: none; is freezing Chrome */
 	.binary {
-		height: 0;
-		overflow: hidden;
+		z-index: -1;
+		color: transparent;
+		text-shadow: 0 0 8px #801;
+	}
+
+	.grid-box {
+		width: 100%;
+		margin: 2% 0;
 	}
 }

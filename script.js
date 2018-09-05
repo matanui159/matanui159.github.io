@@ -24,7 +24,7 @@ function compile_shader(type, name) {
 function draw(time) {
 	var uniform = gl.getUniformLocation(program, "time")
 	gl.clear(gl.COLOR_BUFFER_BIT)
-	gl.uniform1f(uniform, (time / 3000) % 1)
+	gl.uniform1f(uniform, (time / 10000) % 1)
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
 	requestAnimationFrame(draw)
 }

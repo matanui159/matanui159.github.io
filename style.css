@@ -22,8 +22,14 @@ body {
 	color: #444;
 }
 
-.sine {
+.binary {
 	position: fixed;
+	top: 0;
 	right: 64px;
-	top: 0px;
+	height: 100vh;
+}
+
+.bit {
+	font: 64px 'Roboto Mono', monospace;
+	color: #F24;
 }

@@ -1,33 +1,46 @@
-function $(name) {
-	return document.getElementsByClassName(name)[0]
+function $(name, list) {
+	var result = document.getElementsByClassName(name)
+	if (list) {
+		return result
+	} else {
+		return result[0]
+	}
 }
 
-var canvas = $("sine")
-var ctx = canvas.getContext("2d")
-
-var sin_amp = canvas.width / 4
-var sin_off = 0
-function mousemove(event) {
-	var width = canvas.width
-	var height = canvas.height
-	if (event) {
-		sin_amp = event.clientX / window.innerWidth * width / 2
-		sin_off = event.clientY
-	}
-
-	ctx.clearRect(0, 0, canvas.width, canvas.height)
-	ctx.strokeStyle = "#F24"
-	ctx.beginPath()
-	for (var y = 0; y < height; y += 2) {
-		ctx.lineTo(width / 2 + Math.cos((y - sin_off) / 64) * sin_amp, y)
-	}
-	ctx.stroke()
-}
-window.addEventListener("mousemove", mousemove)
-
+var bit_count = 1
 function resize() {
-	canvas.height = window.innerHeight
-	mousemove()
+	var count = window.innerHeight / $("bit").offsetHeight
+	console.log(count)
+	for (; bit_count < count; ++bit_count) {
+		console.log()
+		var bit = document.createElement("div")
+		bit.className = "bit"
+		bit.innerHTML = Math.floor(Math.random() * 2)
+		$("binary").appendChild(bit)
+	}
 }
 window.addEventListener("resize", resize)
 resize()
+
+var mouse_x = 0
+var mouse_y = 0
+window.addEventListener("mousemove", function(event) {
+	var bits = $("bit", true)
+	for (var i = 0; i < bits.length; ++i) {
+		var rect = bits[i].getBoundingClientRect()
+		if (mouse_y < rect.top || mouse_y > rect.bottom) {
+			if (event.clientY >= rect.top && event.clientY <= rect.bottom) {
+				var bit = bits[i].innerHTML.trim()
+				if (bit === "0") {
+					bit = "1"
+				} else {
+					bit = "0"
+				}
+				bits[i].innerHTML = bit
+			}
+		}
+	}
+
+	mouse_x = event.clientX
+	mouse_y = event.clientY
+})

@@ -3,77 +3,24 @@
 	<head>
 		<title>Joshua Minter</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Oswald">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Raleway">
 		<link rel="stylesheet" href="normalize.css">
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<div class="content">
-			<div class="name">
-				Joshua Minter
+			<div class="title">
+				<div class="name">
+					Joshua Minter
+				</div>
+				<div class="desc">
+					programmer / gamedev / graphics wiz
+				</div>
 			</div>
-			<div class="menu">
-				<a class="section" href="#about">
-					About
-				</a>
-				<a class="section" href="#games">
-					Games
-				</a>
-				<a class="section" href="#other">
-					Other
-				</a>
-			</div>
-			<div class="earth-div">
-				<canvas class="earth"></canvas>
-			</div>
-
-			<script type="x-shader/x-vertex" class="vertex">
-				attribute vec2 vpos;
-				varying vec2 fpos;
-	
-				void main() {
-					fpos = vpos;
-					gl_Position = vec4(vpos, 0, 1);
-				}
-			</script>
-			<script type="x-shader/x-fragment" class="fragment">
-				precision mediump float;
-				varying vec2 fpos;
-
-				uniform float time;
-
-				uniform sampler2D iday;
-				uniform sampler2D inight;
-				uniform sampler2D inormal;
-
-				float light(vec3 normal) {
-					vec3 light = normalize(vec3(2.0, 0.0, 1.0));
-					return max(dot(normal, light), 0.0);
-				}
-	
-				void main() {
-					float len = length(fpos);
-					if (len > 1.0) {
-						discard;
-					}
-
-					float PI2 = 6.2832;
-					vec3 real = vec3(fpos, sqrt(1.0 - len * len));
-					vec2 coord = vec2(
-						mod(atan(real.z, real.x) / PI2 + time, 1.0),
-						real.y / -2.0 + 0.5
-					);
-					vec3 normal = real;
-
-					vec4 result = mix(
-						texture2D(inight, coord),
-						texture2D(iday, coord),
-						light(normal)
-					);
-					gl_FragColor = result;
-				}
-			</script>
-			<script src="script.js" async></script>
 		</div>
+		<canvas class="sine" width="128">
+		</canvas>
+
+		<script src="script.js" async></script>
 	</body>
 </html>

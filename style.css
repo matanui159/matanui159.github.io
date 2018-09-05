@@ -1,53 +1,29 @@
 body {
 	background-color: black;
-	color: #888;
 }
 
 .content {
-	width: 40%;
-	margin: 0 auto;
+	height: 100vh;
+}
+
+.title {
+	position: absolute;
+	left: 64px;
+	bottom: 64px;
 }
 
 .name {
-	text-align: center;
-	font: 6vw "Lobster", sans-serif;
+	font: 128px 'Lobster', sans-serif;
+	color: white;
 }
 
-.menu {
-	display: flex;
-	justify-content: space-evenly;
+.desc {
+	font: 32px 'Raleway', sans-serif;
+	color: #444;
 }
 
-.section {
-	font: 2vw "Oswald", sans-serif;
-	color: inherit;
-	text-decoration: none;
-	transition: 0.5s color;
-}
-
-.section:hover {
-	color: #FFF;
-}
-
-.earth-div {
-	margin: 20%;
-	margin-bottom: 0;
-	width: 60%;
-}
-
-/*
- * Portrait
- */
-@media only screen and (orientation: portrait) {
-	.content {
-		width: 100%;
-	}
-
-	.name {
-		font-size: 15vw;
-	}
-
-	.section {
-		font-size: 5vw;
-	}
+.sine {
+	position: fixed;
+	right: 64px;
+	top: 0px;
 }

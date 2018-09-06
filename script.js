@@ -43,6 +43,7 @@ window.addEventListener("mousemove", function(event) {
  * Git repo
  */
 function gitcallback(response) {
+	console.log(response)
 	var data = response.data
 	for (var i = 0; i < data.length; ++i) {
 		if (data[i].type === "PushEvent") {
@@ -50,6 +51,7 @@ function gitcallback(response) {
 			var gitlink = $("gitlink")
 			gitlink.innerHTML = name
 			gitlink.href = "https://github.com/" + name
+			$("footer").style.display = "block"
 			break
 		}
 	}

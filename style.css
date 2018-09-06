@@ -1,5 +1,11 @@
 body {
 	background-color: black;
+	color: white;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
 }
 
 .content {
@@ -9,7 +15,6 @@ body {
 
 .name {
 	font: 128px 'Lobster', sans-serif;
-	color: white;
 	text-align: center;
 }
 
@@ -29,32 +34,49 @@ body {
 }
 
 .grid {
-	margin-top: 24px;
+	margin: 24px 0;
 }
 
-.grid-box {
+.grid-button {
 	float: left;
 	width: 48%;
 	margin: 1%;
-	background-color: rgba(255, 255, 255, 0.25);
 	border-radius: 2px;
+	background-color: rgba(255, 255, 255, 0.25);
+	font: 48px 'Raleway', sans-serif;
+	text-align: center;
+
 	position: relative;
 	bottom: 0;
 	transition: background-color 0.5s, bottom 0.5s, box-shadow 0.5s;
 }
 
-.grid-box-hover:hover {
+.grid-button a {
+	display: block;
+	padding: 32px;
+}
+
+.grid-button:hover {
 	background-color: #812;
 	bottom: 8px;
 }
 
-.button {
-	display: block;
-	padding: 32px;
-	font: 64px 'Raleway', sans-serif;
-	color: #FFF;
+.grid-clear {
+	clear: both;
+}
+
+.footer {
+	font: 16px 'Raleway', sans-serif;
+	color: #888;
 	text-align: center;
-	text-decoration: none;
+}
+
+.gitlink {
+	text-decoration: underline;
+}
+
+.gitlink:hover {
+	color: #F24;
 }
 
 /* Tablet */
@@ -72,8 +94,8 @@ body {
 		font-size: 3vw;
 	}
 
-	.button {
-		font-size: 6vw;
+	.grid-button {
+		font-size: 32px;
 	}
 }
 
@@ -97,11 +119,7 @@ body {
 		text-shadow: 0 0 8px #812;
 	}
 
-	.grid-box {
+	.grid-button {
 		width: 98%;
-	}
-
-	.button {
-		font-size: 9vw;
 	}
 }

@@ -13,15 +13,17 @@ Element.prototype.$add = function(name) {
  * Binary line
  */
 var bit_count = 1
-window.addEventListener('resize', function() {
+function resize() {
 	var count = window.innerHeight / $('.bit').offsetHeight
 	for (; bit_count < count; ++bit_count) {
 		var bit = $('.binary').$add('div')
 		bit.className = 'bit'
 		bit.innerHTML = Math.floor(Math.random() * 2)
 	}
-})
-window.dispatchEvent(new Event('resize'))
+}
+window.addEventListener('resize', resize)
+window.addEventListener('load', resize)
+resize()
 
 var bit_prev = 0
 window.addEventListener('mousemove', function(event) {
@@ -46,10 +48,10 @@ function git_callback(response) {
 	var data = response.data
 	for (var i = 0; i < data.length; ++i) {
 		if ('repo' in data[i]) {
-			var name = data[i].repo.name
+			var repo = data[i].repo.name
 			var git = $('.git')
-			git.href = "https://github.com/" + name
-			git.innerHTML = name
+			git.href = 'https://github.com/' + repo
+			git.innerHTML = repo + git.innerHTML
 			break
 		}
 	}

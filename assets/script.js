@@ -47,10 +47,9 @@ function git_callback(response) {
 	for (var i = 0; i < data.length; ++i) {
 		if ('repo' in data[i]) {
 			var name = data[i].repo.name
-			var link = $('.git a')
-			link.innerHTML = name
-			link.href = "https://github.com/" + name
-			$('.git').style.display = 'block'
+			var git = $('.git')
+			git.href = "https://github.com/" + name
+			git.innerHTML = name
 			break
 		}
 	}

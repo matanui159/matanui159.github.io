@@ -1,6 +1,9 @@
 ---
 ---
 @import 'normalize';
+@import 'fontawesome';
+@import 'brands';
+@import 'solid';
 
 $highlight: #812;
 $faded: #888;
@@ -8,140 +11,124 @@ $faded: #888;
 body {
 	background-color: black;
 	color: white;
-	font: {
-		family: 'Raleway', sans-serif;
-		size: 16px;
-	}
-}
-
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-.content {
-	width: 768px;
-	margin: 32px auto;
-}
-
-.name {
-	text-align: center;
-	font: {
-		family: 'Lobster', sans-serif;
-		size: 128px;
-	}
-}
-
-.desc {
-	color: $faded;
-	text-align: center;
-	font-size: 32px;
+	font-family: 'Raleway', sans-serif;
 }
 
 .binary {
 	position: fixed;
 	top: 0;
-	right: 32px;
+	right: 2vw;
 	height: 100vh;
 	color: $highlight;
 	font: {
 		family: 'Roboto Mono', monospace;
-		size: 32px;
+		size: 2vw;
 	}
 }
 
-$padding: 2%;
-.grid {
-	margin: 24px 0;
+.content {
+	position: fixed;
+	left: 2vw;
+	bottom: 2vw;
+	display: flex;
+	align-items: center;
 
-	.button {
-		float: left;
-		width: 50% - $padding;
-		margin: $padding / 2;
-		border-radius: 2px;
-		background-color: rgba(255, 255, 255, 0.25);
-		text-align: center;
-		font-size: 48px;
+	.left {
+		padding: 1vw 2vw 1vw 0;
+		border-right: 1px solid white;
 
-		position: relative;
-		bottom: 0;
-		transition: background-color 0.5s, bottom 0.5s;
-
-		&:hover {
-			background-color: $highlight;
-			bottom: 8px;
+		.name {
+			font: {
+				family: 'Lobster', sans-serif;
+				size: 8vw;
+			}
 		}
 
-		a {
-			display: block;
-			padding: 32px;
+		.desc {
+			color: $faded;
+			font-size: 2vw;
+			text-align: center;
 		}
-	}
-
-	.clear {
-		clear: both;
-	}
-}
-
-.git {
-	color: $faded;
-	text-align: center;
-	display: none;
-
-	a {
-		text-decoration: underline;
-
-		&:hover {
-			color: $highlight;
-		}
-	}
-}
-
-/*
- * Tablet
- */
-@media only screen and (max-width: 1024px) {
-	.content {
-		width: 75%;
-		margin-top: 8px;
 	}
 	
-	.name {
-		font-size: 12vw;
-	}
+	.right {
+		padding-left: 2vw;
+		color: $faded;
+		font-size: 1.5vw;
 
-	.desc {
-		font-size: 3vw;
-	}
+		div {
+			margin: 0.5vw 0;
 
-	.grid .button {
-		font-size: 32px;
+			.fab, .fas {
+				width: 2vw;
+				text-align: center;
+				margin-right: 0.5vw;
+			}
+
+			a {
+				color: inherit;
+				text-decoration: none;
+
+				span {
+					display: none;
+					color: $faded / 2;
+				}
+
+				&:hover {
+					color: $highlight;
+
+					span {
+						display: inline;
+					}
+				}
+			}
+		}
 	}
 }
 
 /*
  * Mobile
  */
-@media only screen and (max-width: 512px) and (orientation: portrait) {
+@media only screen and (orientation: portrait) {
 	.content {
-		width: 100%;
-	}
+		left: 4vw;
+		top: 0;
+		height: 100vh;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
 
-	.name {
-		font-size: 16vw;
-	}
+		.left {
+			padding: 0 2vw 4vw 2vw;
+			border-right: none;
+			border-bottom: 1px solid white;
 
-	.desc {
-		font-size: 4vw;
+			.name {
+				font-size: 14vw;
+			}
+
+			.desc {
+				font-size: 4vw;
+			}
+		}
+
+		.right {
+			padding: 4vw 0 0 2vw;
+			font-size: 3vw;
+
+			div {
+				margin: 1vw 0;
+
+				.fab, .fas {
+					width: 4vw;
+					margin-right: 1vw;
+				}
+			}
+		}
 	}
 
 	.binary {
-		z-index: -1;
-		color: transparent;
-		text-shadow: 0 0 8px #812;
-	}
-
-	.grid .button {
-		width: 100% - $padding;
+		right: 4vw;
+		font-size: 4vw;
 	}
 }

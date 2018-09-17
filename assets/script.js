@@ -42,6 +42,33 @@ window.addEventListener('mousemove', function(event) {
 })
 
 /*
+ * Description
+ */
+function random(list) {
+	return list[Math.floor(Math.random() * list.length)]
+}
+
+var desc = [
+	'happy',
+	'bored',
+	'weird',
+	'crazy',
+	'normal',
+	'awesome',
+	'tired',
+	'graphics',
+	'edgy'
+]
+var title = [
+	'gamer',
+	'student',
+	'wizard',
+	'psychopath',
+	'wannabe',
+]
+$('.desc span').innerHTML = random(desc) + ' ' + random(title)
+
+/*
  * Git repo
  */
 function git_callback(response) {
@@ -49,9 +76,10 @@ function git_callback(response) {
 	for (var i = 0; i < data.length; ++i) {
 		if ('repo' in data[i]) {
 			var repo = data[i].repo.name
-			var git = $('.git')
+			var git = $('.git a')
 			git.href = 'https://github.com/' + repo
 			git.innerHTML = repo + git.innerHTML
+			$('.git').style.display = 'block'
 			break
 		}
 	}

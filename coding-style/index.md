@@ -59,9 +59,9 @@ some_function(
 ### Wrong
 ```c
 some_function(
-			  some_arg1
-			  some_arg1
-			  some_arg1
+			  some_arg1,
+			  some_arg2,
+			  some_arg3
 );
 ```
 ---

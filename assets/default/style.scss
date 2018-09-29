@@ -1,7 +1,10 @@
 ---
 ---
 @import 'normalize';
-@import 'monokai';
+
+@media only screen {
+	@import 'monokai';
+}
 
 $bg: #272822;
 $fg: #f8f8f2;
@@ -75,4 +78,22 @@ body {
 .content {
 	width: 800px;
 	margin: 0 auto;
+}
+
+@media only screen and (max-width: 800px) {
+	.content {
+		width: 100%;
+		padding: 0 16px;
+	}
+}
+
+@media only print {
+	body {
+		background-color: white;
+		color: black;
+
+		h3.right, h3.wrong {
+			color: black;
+		}
+	}
 }

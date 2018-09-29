@@ -824,7 +824,7 @@ end
 
 ## C++ differences
 
-Just... don't
+Just... don't.
 ### Right
 ```c++
 extern "C" {

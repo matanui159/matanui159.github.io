@@ -7,7 +7,7 @@
 function $iter(query, callback) {
 	var elems = document.querySelectorAll(query);
 	for (var i = 0; i < elems.length; ++i) {
-		callback(elems[i])
+		callback(elems[i]);
 	}
 }
 

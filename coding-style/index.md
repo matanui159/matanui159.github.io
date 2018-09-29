@@ -28,20 +28,17 @@ A few things I should point out right now:
 
 ## Indentation
 
-Use tabs, not spaces. This allows each developer to customize their tab-width.
+Use tabs, not spaces. This allows each developer to customize their tab-width. However, it is recommended to have your tab width set to 4 spaces.
 ### Right
 ```c
 int main() {
 	return 0;
 }
 ```
-### Wrong
+#### Wrong
 ```c
 int main() {
-    // It's really hard to show tabs vs spaces.
-    // Especially since HTML has a default 8 space tab width
-    // so all these tabs are converted to spaces anyway
-    // but pretend this person is using spaces.
+    // This person is using spaces
     return 0;
 }
 ```
@@ -56,7 +53,7 @@ some_function(
 	some_arg3
 );
 ```
-### Wrong
+#### Wrong
 ```c
 some_function(
 			  some_arg1,
@@ -81,7 +78,7 @@ switch (value) {
 		break;
 }
 ```
-### Wrong
+#### Wrong
 ```c
 switch (value) {
 case 0:
@@ -105,7 +102,7 @@ Do not place spaces around unary operators.
 *(array++) = 0;
 --size;
 ```
-### Wrong
+#### Wrong
 ```c
 *(array ++ ) = 0;
 -- size;
@@ -117,9 +114,22 @@ Place a single space around binary operators.
 ```c
 int index = y * width + x;
 ```
-### Wrong
+#### Wrong
 ```c
 int index=y*width+x;
+```
+---
+
+Do not place spaces around access operators.
+### Right
+```c
+object.value = 3;
+ptr->value = 5;
+```
+#### Wrong
+```c
+object . value = 3;
+ptr -> value = 5;
 ```
 ---
 
@@ -130,7 +140,7 @@ for (int i = 0; i < size; ++i) {
 	some_function(i, size);
 }
 ```
-### Wrong
+#### Wrong
 ```c
 for (int i = 0 ; i < size ; ++i) {
 	some_function(i , size) ;
@@ -145,7 +155,7 @@ if (value == 0) {
 	// do something
 }
 ```
-### Wrong
+#### Wrong
 ```c
 if ( value == 0 ){
 	// do something
@@ -154,7 +164,7 @@ if ( value == 0 ){
 ---
 
 Place a single space between control statements and their parentheses.
-### Wrong
+#### Wrong
 ```c
 if(value == 0) {
 	// do something
@@ -171,7 +181,7 @@ void some_function(int arg1, int arg2, int arg3) {
 
 some_function(arg1, arg2, arg3);
 ```
-### Wrong
+#### Wrong
 ```c
 void some_function (int arg1, int arg2, int arg3) {
 	// do something
@@ -186,7 +196,7 @@ Do not place spaces inbetween object constructors.
 ```c
 mytype_t value = {arg1, arg2, arg3};
 ```
-### Wrong
+#### Wrong
 ```c
 mytype_t value = { arg1, arg2, arg3 };
 ```
@@ -203,7 +213,7 @@ if (half_width > half_height) {
 	half_width /= 2;
 }
 ```
-### Wrong
+#### Wrong
 ```c
 int half_width = width / 2, half_height = height / 2;
 if (half_width > half_height) half_width /= 2;
@@ -218,7 +228,7 @@ int width, height;
 int x;
 int y;
 ```
-### Wrong
+#### Wrong
 ```c
 int width = 1280, height = 720;
 int x; double y;
@@ -238,7 +248,7 @@ void some_function2() {
 	// do something else
 }
 ```
-### Wrong
+#### Wrong
 ```c
 int some_variable;
 void some_function1() {
@@ -265,7 +275,7 @@ if (max > g_max) {
 	g_max = max;
 }
 ```
-### Wrong
+#### Wrong
 ```c
 int max = 0;
 for (int i = 0; i < size; ++i) {
@@ -280,21 +290,21 @@ if (max > g_max) {
 ```
 ---
 
-Lines longer than 80 characters should be split up to be under 80 characters.
+Lines longer than 80 characters should be split up to be under 80 characters. This is measured as if tabs were 4 spaces.
 
 ---
 
 **Exception:** Function definitions should never be broken up.
 ### Right
 ```c
-void some_function(some_type_1_t someArg1, some_type_2_t someArg2, some_type_3_t someArg3) {
+void some_function(some_type1_t someArg1, some_type2_t someArg2, some_type3_t someArg3) {
 	// do something
 }
 ```
-### Wrong
+#### Wrong
 ```c
-void some_function(some_type_1_t someArg1, some_type_2_t someArg2,
-		some_type_3_t someArg3) {
+void some_function(some_type1_t someArg1, some_type2_t someArg2,
+		some_type3_t someArg3) {
 	// do something
 }
 ```
@@ -331,7 +341,7 @@ some_function(priority,
 	arg3
 );
 ```
-### Wrong
+#### Wrong
 ```c
 some_function(
 	arg1, unrelated_arg2,
@@ -363,7 +373,7 @@ int value
 	+ arg2
 	+ arg3;
 ```
-### Wrong
+#### Wrong
 ```c
 int value = arg1 +
 	arg2 +
@@ -387,7 +397,7 @@ int main() {
 	}
 }
 ```
-### Wrong
+#### Wrong
 ```c
 int main()
 {
@@ -404,7 +414,7 @@ if (value == 0) {
 	do_something();
 }
 ```
-### Wrong
+#### Wrong
 ```c
 if (value == 0)
 	do_something();
@@ -418,7 +428,7 @@ if (value == 0) do_something();
 ```c
 while (getchar() != '\n');
 ```
-### Wrong
+#### Wrong
 ```c
 while (getchar() != '\n') {}
 
@@ -434,7 +444,7 @@ The null pointer should always be written as `NULL`.
 ```c
 void* ptr = NULL;
 ```
-### Wrong
+#### Wrong
 ```c
 void* ptr = 0;
 ```
@@ -451,7 +461,7 @@ if (condition) {
 	// do something
 }
 ```
-### Wrong
+#### Wrong
 ```c
 if (condition == true) {
 	// do something
@@ -482,7 +492,7 @@ if (value == 0) {
 	// do something else
 }
 ```
-### Wrong
+#### Wrong
 ```c
 if (ptr) {
 	// do something
@@ -500,7 +510,7 @@ Do not append `.0`, `.f` and `.0f` to floating point literals unless required.
 float x = 2;
 float y = 1 / 3.0;
 ```
-### Wrong
+#### Wrong
 ```c
 float x = 2.0;
 float y = 1 / 3;
@@ -517,7 +527,7 @@ int main() {
 	init_value(&y);
 }
 ```
-### Wrong
+#### Wrong
 ```c
 static int x;
 
@@ -541,7 +551,7 @@ int64_t large_value;
 int size = sizeof(int);
 unsigned gl_buffer;
 ```
-### Wrong
+#### Wrong
 ```c
 signed char small_value;
 long long large_value;
@@ -557,7 +567,7 @@ void* ptr1;
 void* ptr2;
 void* ptr3;
 ```
-### Wrong
+#### Wrong
 ```c
 void *ptr1;
 void* ptr2, ptr3;
@@ -571,7 +581,7 @@ Use snake_case.
 ```c
 int some_value;
 ```
-### Wrong
+#### Wrong
 ```c
 int someValue;
 ```
@@ -586,7 +596,7 @@ typedef struct my_object_t {
 
 my_object_t object;
 ```
-### Wrong
+#### Wrong
 ```c
 typedef struct my_object_s {
 	// values
@@ -603,7 +613,7 @@ static void object_dance(my_object_t* object);
 
 void my_object_create(my_object_t* object);
 ```
-### Wrong
+#### Wrong
 ```c
 static void dance(my_object_t* object);
 
@@ -616,7 +626,7 @@ Global static variables should be prefixed with `g_`. There should be no global 
 ```c
 static int g_variable;
 ```
-### Wrong
+#### Wrong
 ```c
 static int variable;
 
@@ -630,7 +640,7 @@ Macros should be in all caps and follow the same naming convention as functions.
 #define MY_OBJECT_CONSTANT 5
 #define MY_OBJECT_LOG(msg) puts(__FILE__ ": " msg)
 ```
-### Wrong
+#### Wrong
 ```c
 #define my_object_constant 5
 #define OBJECT_LOG(msg) puts(__FILE__ ": " msg)
@@ -647,7 +657,7 @@ Name header guard macros as `NAMESPACE_FILE_H_`.
 
 #endif
 ```
-### Wrong
+#### Wrong
 ```c
 #ifndef object_h
 #define object_h
@@ -663,7 +673,7 @@ Variable names should be short, quick and easy to write. Abbreviation is allowed
 ```c
 int len;
 ```
-### Wrong
+#### Wrong
 ```c
 int length_of_array; // too long
 int l; // too vague
@@ -705,7 +715,7 @@ There shouldn't be comments unless absolutely necessary.
 ```c
 int i = 3 + 5;
 ```
-### Wrong
+#### Wrong
 ```c
 // this adds 3 and 5
 int i = 3 + 5;
@@ -716,7 +726,7 @@ int i = 3 + 5;
 ### Right
 ```c
 if (!some_function()) {
-	// todo: handle error
+	// TODO: handle error
 }
 ```
 ---
@@ -727,7 +737,7 @@ Only use post-increment if necessary.
 *(array++) = 0;
 --size;
 ```
-### Wrong
+#### Wrong
 ```c
 *(++array) = 0;
 size--;
@@ -742,7 +752,7 @@ if (array != NULL) {
 	size = array->size;
 }
 ```
-### Wrong
+#### Wrong
 ```c
 int size = array != NULL ? array->size : 0;
 ```
@@ -753,14 +763,14 @@ Only use macro functions if necessary.
 ```c
 int add_one(int value);
 ```
-### Wrong
+#### Wrong
 ```c
 #define ADD_ONE(value) ((value) + 1)
 ```
 ---
 
 Do not use inline functions.
-### Wrong
+#### Wrong
 ```c
 static inline int add_one(int value) {
 	return value + 1;
@@ -770,18 +780,18 @@ static inline int add_one(int value) {
 
 ## Lua differences
 
-Use single quotes for strings.
+Use single quotes for strings. This is the same for any language that allows single quote strings.
 ### Right
 ```lua
 local name = 'Joshua Minter'
 ```
-### Wrong
+#### Wrong
 ```lua
 local name = "Joshua Minter"
 ```
 ---
 
-Use camelCase for classes and functions. Classes should start with a capital letter. Variables still use snake_case.
+Use camelCase for classes and functions. Classes should start with a capital letter. Variables still use snake_case. This is the same for any language that has classes.
 ### Right
 ```lua
 local Object = require('classic')
@@ -792,7 +802,7 @@ function doSomething()
 	-- do something
 end
 ```
-### Wrong
+#### Wrong
 ```lua
 local object = require('classic')
 
@@ -804,7 +814,7 @@ end
 ```
 ---
 
-Always use local variables. For globals, define them as local at a global scope rather than defining them as global from a local scope.
+Always use local variables. For globals, define them as local at a global scope rather than defining them as global from a local scope. This is the same for any language that does not require defining variables.
 ### Right
 ```lua
 local x = 3
@@ -813,7 +823,7 @@ function someFunction()
 	local y = 5
 end
 ```
-### Wrong
+#### Wrong
 ```lua
 function someFunction()
 	x = 3
@@ -833,7 +843,7 @@ extern "C" {
 
 }
 ```
-### Wrong
+#### Wrong
 ```c++
 // write in C++ code
 ```

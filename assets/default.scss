@@ -42,12 +42,12 @@ body {
 
 	h3 {
 		font-size: 24px;
-		&.right {
-			color: $right;
-		}
-		&.wrong {
-			color: $wrong;
-		}
+		color: $right;
+	}
+
+	h4 {
+		font-size: 24px;
+		color: $wrong;
 	}
 
 	hr {
@@ -60,6 +60,7 @@ body {
 	}
 
 	pre {
+		tab-size: 4;
 		padding-left: 16px;
 		margin-left: 16px;
 		border-left: {

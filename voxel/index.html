@@ -1,0 +1,78 @@
+---
+---
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel='stylesheet' href='assets/style.css'>
+	</head>
+	<body>
+		<canvas></canvas>
+		<script type='x-shader/x-vertex' id='vertex'>#version 300 es
+			layout(location = 0) in vec2 vertex;
+			out vec2 fragment;
+
+			void main() {
+				fragment = vertex;
+				gl_Position = vec4(vertex, 0, 1);
+			}
+		</script>
+		<script type='x-shader/x-fragment' id='fragment'>#version 300 es
+			precision mediump float;
+			layout(location = 0) out vec4 color;
+			in vec2 fragment;
+
+			uniform lowp sampler3D map;
+			uniform vec3 camera_pos;
+
+			float calc_dmax(float pos, float dir) {
+				if (pos == 0.0) {
+					return 0.0;
+				}
+				if (dir < 0.0) {
+					return (floor(pos) - pos) / dir;
+				} else {
+					return (ceil(pos) - pos) / dir;
+				}
+			}
+
+			vec4 raytrace() {
+				vec3 pos = camera_pos;
+				vec3 dir = vec3(sin(fragment / 2.0), 1.0);
+				dir = normalize(dir);
+				
+				ivec3 grid = ivec3(floor(pos));
+				vec3 delta = 1.0 / abs(dir);
+				ivec3 step = ivec3(dir * delta);
+				vec3 dmax = vec3(
+					calc_dmax(pos.x, dir.x),
+					calc_dmax(pos.y, dir.y),
+					calc_dmax(pos.z, dir.z)
+				);
+
+				for (int i = 0; i < 16; ++i) {
+					vec4 cell = texelFetch(map, grid, 0);
+					if (cell.a > 0.5) {
+						return cell;
+					}
+
+					if (dmax.x < dmax.y && dmax.x < dmax.z) {
+						grid.x += step.x;
+						dmax.x += delta.x + 0.001;
+					} else if (dmax.y < dmax.x && dmax.y < dmax.z) {
+						grid.y += step.y;
+						dmax.y += delta.y + 0.001;
+					} else {
+						grid.z += step.z;
+						dmax.z += delta.z + 0.001;
+					}
+				}
+				return vec4(0, 0, 0, 1);
+			}
+
+			void main() {
+				color = raytrace();
+			}
+		</script>
+		<script src='assets/script.js' async></script>
+	</body>
+</html>

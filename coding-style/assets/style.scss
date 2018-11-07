@@ -3,98 +3,100 @@
 @import 'normalize';
 
 @media only screen {
-	@import 'monokai';
+   @import 'monokai';
 }
 
 $bg: #272822;
 $fg: #f8f8f2;
 $line: #75715e;
+$title: #66d9ef;
 $right: #a6e22e;
 $wrong: #f92672;
 
 body {
-	background: $bg;
-	color: $fg;
-	text-align: justify;
-	font: {
-		family: 'Roboto', sans-serif;
-		size: 16px;
-	}
+   background: $bg;
+   color: $fg;
+   text-align: justify;
+   font: {
+      family: 'Roboto', sans-serif;
+      size: 16px;
+   }
 
-	a {
-		color: inherit;
-		&:hover {
-			color: $right;
-		}
-	}
+   a {
+      color: inherit;
+      &:hover {
+         color: $right;
+      }
+   }
 
-	h1 {
-		text-align: center;
-		font: {
-			family: 'Raleway', sans-serif;
-			size: 64px;
-		}
-	}
+   h1 {
+      text-align: center;
+      font: {
+         family: 'Raleway', sans-serif;
+         size: 64px;
+      }
+   }
 
-	h2 {
-		font-size: 32px;
-	}
+   h2 {
+      font-size: 32px;
+      color: $title;
+   }
 
-	h3 {
-		font-size: 24px;
-		color: $right;
-	}
+   h3 {
+      font-size: 24px;
+      color: $right;
+   }
 
-	h4 {
-		font-size: 24px;
-		color: $wrong;
-	}
+   h4 {
+      font-size: 24px;
+      color: $wrong;
+   }
 
-	hr {
-		border: initial;
-		border-bottom: {
-			color: $line;
-			width: 1px;
-			style: solid;
-		}
-	}
+   hr {
+      border: initial;
+      border-bottom: {
+         color: $line;
+         width: 1px;
+         style: solid;
+      }
+   }
 
-	pre {
-		tab-size: 4;
-		padding-left: 16px;
-		margin-left: 16px;
-		border-left: {
-			color: $line;
-			width: 1px;
-			style: solid;
-		}
-	}
-	
-	code {
-		font: inherit;
-		font-family: 'Roboto+Mono', monospace;
-	}
+   pre {
+      tab-size: 3;
+      padding-left: 16px;
+      margin-left: 16px;
+      border-left: {
+         color: $line;
+         width: 1px;
+         style: solid;
+      }
+   }
+   
+   code {
+      font: inherit;
+      font-family: 'Roboto+Mono', monospace;
+   }
 }
 
 .content {
-	width: 800px;
-	margin: 0 auto;
+   width: 800px;
+   margin: 0 auto;
 }
 
 @media only screen and (max-width: 800px) {
-	.content {
-		width: 100%;
-		padding: 0 16px;
-	}
+   .content {
+      width: 100%;
+      padding: 0 16px;
+   }
 }
 
 @media only print {
-	body {
-		background-color: white;
-		color: black;
+   body {
+      background-color: white;
+      color: black;
 
-		h3.right, h3.wrong {
-			color: black;
-		}
-	}
+      h3.right, h3.wrong {
+         color: black;
+      }
+   }
 }

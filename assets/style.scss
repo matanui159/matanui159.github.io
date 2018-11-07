@@ -9,130 +9,130 @@ $highlight: #812;
 $faded: #888;
 
 body {
-	background-color: black;
-	color: white;
-	font-family: 'Raleway', sans-serif;
+   background-color: black;
+   color: white;
+   font-family: 'Raleway', sans-serif;
 }
 
 .binary {
-	position: fixed;
-	top: 0;
-	right: 2vw;
-	height: 100vh;
-	color: $highlight;
-	font: {
-		family: 'Roboto Mono', monospace;
-		size: 2vw;
-	}
+   position: fixed;
+   top: 0;
+   right: 2vw;
+   height: 100vh;
+   color: $highlight;
+   font: {
+      family: 'Roboto Mono', monospace;
+      size: 2vw;
+   }
 }
 
 .content {
-	position: fixed;
-	left: 2vw;
-	bottom: 2vw;
-	display: flex;
-	align-items: center;
+   position: fixed;
+   left: 2vw;
+   bottom: 2vw;
+   display: flex;
+   align-items: center;
 
-	.left {
-		padding: 1vw 2vw 1vw 0;
-		border-right: 1px solid white;
+   .left {
+      padding: 1vw 2vw 1vw 0;
+      border-right: 1px solid white;
 
-		.name {
-			font: {
-				family: 'Lobster', sans-serif;
-				size: 8vw;
-			}
-		}
+      .name {
+         font: {
+            family: 'Lobster', sans-serif;
+            size: 8vw;
+         }
+      }
 
-		.desc {
-			color: $faded;
-			font-size: 2vw;
-			text-align: center;
-		}
-	}
-	
-	.right {
-		padding-left: 2vw;
-		color: $faded;
-		font-size: 1.5vw;
+      .desc {
+         color: $faded;
+         font-size: 2vw;
+         text-align: center;
+      }
+   }
+   
+   .right {
+      padding-left: 2vw;
+      color: $faded;
+      font-size: 1.5vw;
 
-		div {
-			margin: 0.5vw 0;
+      div {
+         margin: 0.5vw 0;
 
-			.fab, .fas {
-				width: 2vw;
-				text-align: center;
-				margin-right: 0.5vw;
-			}
+         .fab, .fas {
+            width: 2vw;
+            text-align: center;
+            margin-right: 0.5vw;
+         }
 
-			a {
-				color: inherit;
-				text-decoration: none;
+         a {
+            color: inherit;
+            text-decoration: none;
 
-				span {
-					display: none;
-					color: $faded / 2;
-				}
+            span {
+               display: none;
+               color: $faded / 2;
+            }
 
-				&:hover {
-					color: $highlight;
+            &:hover {
+               color: $highlight;
 
-					span {
-						display: inline;
-					}
-				}
-			}
-		}
+               span {
+                  display: inline;
+               }
+            }
+         }
+      }
 
-		.git {
-			display: none;
-		}
-	}
+      .git {
+         display: none;
+      }
+   }
 }
 
 /*
  * Mobile
  */
 @media only screen and (orientation: portrait) {
-	.content {
-		left: 4vw;
-		top: 0;
-		height: 100vh;
-		flex-direction: column;
-		align-items: flex-start;
-		justify-content: center;
+   .content {
+      left: 4vw;
+      top: 0;
+      height: 100vh;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
 
-		.left {
-			padding: 0 2vw 4vw 2vw;
-			border-right: none;
-			border-bottom: 1px solid white;
+      .left {
+         padding: 0 2vw 4vw 2vw;
+         border-right: none;
+         border-bottom: 1px solid white;
 
-			.name {
-				font-size: 14vw;
-			}
+         .name {
+            font-size: 14vw;
+         }
 
-			.desc {
-				font-size: 3vw;
-			}
-		}
+         .desc {
+            font-size: 3vw;
+         }
+      }
 
-		.right {
-			padding: 4vw 0 0 2vw;
-			font-size: 3vw;
+      .right {
+         padding: 4vw 0 0 2vw;
+         font-size: 3vw;
 
-			div {
-				margin: 1vw 0;
+         div {
+            margin: 1vw 0;
 
-				.fab, .fas {
-					width: 4vw;
-					margin-right: 1vw;
-				}
-			}
-		}
-	}
+            .fab, .fas {
+               width: 4vw;
+               margin-right: 1vw;
+            }
+         }
+      }
+   }
 
-	.binary {
-		right: 4vw;
-		font-size: 4vw;
-	}
+   .binary {
+      right: 4vw;
+      font-size: 4vw;
+   }
 }

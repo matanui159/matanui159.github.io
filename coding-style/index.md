@@ -3,7 +3,7 @@ title: Coding Style Guidelines
 layout: default
 ---
 
-# Code Style Guidelines
+# Code Style Guidelines v2
 ## Disclaimer
 A few things I should point out right now:
 1. This is designed for the C language. The being said, however, I do usually apply these rules to other languages as well. At the end of this document is some exceptions for other languages.
@@ -15,6 +15,7 @@ A few things I should point out right now:
 ---
 
 ## Contents
+- [V2 Differences](#v2-differences)
 - [Indentation](#indentation)
 - [Spacing](#spacing)
 - [Line breaking](#line-breaking)
@@ -24,41 +25,73 @@ A few things I should point out right now:
 - [File Structure](#file-structure)
 - [Misc.](#misc)
 - [Lua differences](#lua-differences)
+- [TypeScript differences](#typescript-differences)
 - [C++ differences](#c-differences)
+
+## V2 Differences
+
+I now use tabs instead of spaces. I still think tabs are great however the lack of support for them started to bug me. Along with this it allowed me to have more control over the style since it wasn't dependent on users customization. I use 3 space tabs cause 3 is a *kool number* unlike the silly 4.
+
+---
+
+Along with the weird 3 space tabs, I now also have 90 character line limits. This allows for a bit more room (along with smaller tabs) and is exactly 30 tabs.
+
+---
+
+I now have a way to break up function definitions that I find neat. It is very similar to the way function calls are broken up.
+
+---
+
+I have decided to always use `<stdbool.h>` over `_Bool`.
+
+---
+
+I have removed the rule that all static functions must always have only two words since, I'll be honest, that was a stupid rule. However, they should still have *atleast* two words.
+
+---
+
+Since I have started programming in TypeScript, I have also added some differences for that language.
+
+---
 
 ## Indentation
 
-Use tabs, not spaces. This allows each developer to customize their tab-width. However, it is recommended to have your tab width set to 4 spaces.
+Use spaces, not tabs. The tab width is 3 spaces.
 ### Right
 ```c
 int main() {
-	return 0;
+   return 0;
 }
 ```
 #### Wrong
 ```c
 int main() {
-    // This person is using spaces
+	// This person is using spaces
+	return 0;
+}
+
+int main() {
+    // This person is using 4 spaces
     return 0;
 }
 ```
 ---
 
-Do not try to align the start of lines when a statement goes over multiple lines. Tabs will never be perfect and mixing tabs and spaces is a bad idea. Instead just use a single extra tab, this will be covered in more detail later.
+Do not try to align the start of lines when a statement goes over multiple lines. Instead just use a single extra tab, this will be covered in more detail later.
 ### Right
 ```c
 some_function(
-	some_arg1,
-	some_arg2,
-	some_arg3
+   some_arg1,
+   some_arg2,
+   some_arg3
 );
 ```
 #### Wrong
 ```c
 some_function(
-			  some_arg1,
-			  some_arg2,
-			  some_arg3
+              some_arg1,
+              some_arg2,
+              some_arg3
 );
 ```
 ---
@@ -67,29 +100,29 @@ Indent both case labels and switch statements relative to the line above.
 ### Right
 ```c
 switch (value) {
-	case 0:
-		// do something
-		break;
-	case 1:
-		// do something else
-		break;
-	default:
-		// do something different
-		break;
+   case 0:
+      // do something
+      break;
+   case 1:
+      // do something else
+      break;
+   default:
+      // do something different
+      break;
 }
 ```
 #### Wrong
 ```c
 switch (value) {
 case 0:
-	// do something
-	break;
+   // do something
+   break;
 case 1:
-	// do something else
-	break;
+   // do something else
+   break;
 default:
-	// do something different
-	break;
+   // do something different
+   break;
 }
 ```
 ---
@@ -137,13 +170,13 @@ Do not place spaces before commas and semicolons.
 ### Right
 ```c
 for (int i = 0; i < size; ++i) {
-	some_function(i, size);
+   some_function(i, size);
 }
 ```
 #### Wrong
 ```c
 for (int i = 0 ; i < size ; ++i) {
-	some_function(i , size) ;
+   some_function(i , size) ;
 }
 ```
 ---
@@ -152,13 +185,13 @@ Do not place spaces inbetween parantheses. However, place a single space after p
 ### Right
 ```c
 if (value == 0) {
-	// do something
+   // do something
 }
 ```
 #### Wrong
 ```c
 if ( value == 0 ){
-	// do something
+   // do something
 }
 ```
 ---
@@ -167,7 +200,7 @@ Place a single space between control statements and their parentheses.
 #### Wrong
 ```c
 if(value == 0) {
-	// do something
+   // do something
 }
 ```
 ---
@@ -176,7 +209,7 @@ Do not place spaces between a function and its parantheses.
 ### Right
 ```c
 void some_function(int arg1, int arg2, int arg3) {
-	// do something
+   // do something
 }
 
 some_function(arg1, arg2, arg3);
@@ -184,7 +217,7 @@ some_function(arg1, arg2, arg3);
 #### Wrong
 ```c
 void some_function (int arg1, int arg2, int arg3) {
-	// do something
+   // do something
 }
 
 some_function (arg1, arg2, arg3);
@@ -210,7 +243,7 @@ Each statement should get its own line.
 int half_width = width / 2;
 int half_height = height / 2;
 if (half_width > half_height) {
-	half_width /= 2;
+   half_width /= 2;
 }
 ```
 #### Wrong
@@ -241,21 +274,21 @@ Add blank lines above and below function definitions.
 int some_variable;
 
 void some_function1() {
-	// do something
+   // do something
 }
 
 void some_function2() {
-	// do something else
+   // do something else
 }
 ```
 #### Wrong
 ```c
 int some_variable;
 void some_function1() {
-	// do something
+   // do something
 }
 void some_function2() {
-	// do something else
+   // do something else
 }
 ```
 ---
@@ -265,52 +298,36 @@ Blank lines should also be used to seperate parts of a function to make the code
 ```c
 int max = 0;
 for (int i = 0; i < size; ++i) {
-	if (array[i] > max) {
-		max = array[i];
-	}
+   if (array[i] > max) {
+      max = array[i];
+   }
 }
 
 if (max > g_max) {
-	puts("New global max found!");
-	g_max = max;
+   puts("New global max found!");
+   g_max = max;
 }
 ```
 #### Wrong
 ```c
 int max = 0;
 for (int i = 0; i < size; ++i) {
-	if (array[i] > max) {
-		max = array[i];
-	}
+   if (array[i] > max) {
+      max = array[i];
+   }
 }
 if (max > g_max) {
-	puts("New global max found!");
-	g_max = max;
+   puts("New global max found!");
+   g_max = max;
 }
 ```
 ---
 
-Lines longer than 80 characters should be split up to be under 80 characters. This is measured as if tabs were 4 spaces.
+Lines longer than 90 characters should be split up to be under 80 characters.
 
 ---
 
-**Exception:** Function definitions should never be broken up.
-### Right
-```c
-void some_function(some_type1_t someArg1, some_type2_t someArg2, some_type3_t someArg3) {
-	// do something
-}
-```
-#### Wrong
-```c
-void some_function(some_type1_t someArg1, some_type2_t someArg2,
-		some_type3_t someArg3) {
-	// do something
-}
-```
----
-
-`for` loops longer than 80 characters should have its initializer taken out.
+`for` loops longer than 90 characters should have its initializer taken out.
 ### Right
 ```c
 linked_node_t* node = some_long_object->list;
@@ -320,69 +337,121 @@ for (; node != NULL; node = node->next) {
 ```
 ---
 
-Function calls longer than 80 characters should have its arguments over multiple lines. You can have multiple arguments on the same line if they match up. You can have arguments on the initial line if its the priority argument that all other arguments are referring to. The final parantheses should be on a new line.
+Function calls longer than 90 characters should have its arguments over multiple lines. You can have multiple arguments on the same line if they match up. You can have arguments on the initial line if its the priority argument that all other arguments are referring to. The final parantheses should be on a new line.
 ### Right
 ```c
 some_function(
-	arg1,
-	arg2,
-	arg3
+   arg1,
+   arg2,
+   arg3
 );
 
 some_function(
-	key1, name1,
-	key2, name2,
-	key3, name3
+   key1, name1,
+   key2, name2,
+   key3, name3
 );
 
 some_function(priority,
-	arg1,
-	arg2,
-	arg3
+   arg1,
+   arg2,
+   arg3
 );
 ```
 #### Wrong
 ```c
 some_function(
-	arg1, unrelated_arg2,
-	arg3
+   arg1, unrelated_arg2,
+   arg3
 );
 
 some_function(non_important_arg1
-	arg2,
-	arg3
+   arg2,
+   arg3
 );
 
 some_function(
-	arg1,
-	arg2,
-	arg3);
+   arg1,
+   arg2,
+   arg3);
 ```
 ---
 
-Operations longer than 80 characters should be split over multiple lines with each line starting with the operator.
+Funcition over 90 characters definitions should be broken up in a similar fassion to function calls.
+### Right
+```c
+void some_function(
+   arg1,
+   arg2,
+   arg3
+) {
+   // function definition
+}
+
+void some_function(
+   key1, name1,
+   key2, name2,
+   key3, name3
+) {
+   // function definition
+}
+
+void some_function(priority,
+   arg1,
+   arg2,
+   arg3
+) {
+   // function definition
+}
+```
+#### Wrong
+```c
+void some_function(
+   arg1, unrelated_arg2,
+   arg3
+) {
+   // function definition
+}
+
+void some_function(non_important_arg1
+   arg2,
+   arg3
+) {
+   // function definition
+}
+
+void some_function(
+   arg1,
+   arg2,
+   arg3) {
+   // function definition
+}
+```
+---
+
+Operations longer than 90 characters should be split over multiple lines with each line starting with the operator.
 ### Right
 ```c
 int value = arg1
-	+ arg2
-	+ arg3;
+   + arg2
+   + arg3;
 
 // or optionally
 int value
-	= arg1
-	+ arg2
-	+ arg3;
+   = arg1
+   + arg2
+   + arg3;
 ```
 #### Wrong
 ```c
 int value = arg1 +
-	arg2 +
-	arg3;
+   arg2 +
+   arg3;
 
 int value =
-	arg1 +
-	arg2 +
-	arg3;
+   arg1 +
+   arg2 +
+   arg3;
 ```
 ---
 
@@ -392,17 +461,17 @@ Place the open brace on the same line, place the close brace on a new line.
 ### Right
 ```c
 int main() {
-	if (value == 0) {
-		do_something();
-	}
+   if (value == 0) {
+      do_something();
+   }
 }
 ```
 #### Wrong
 ```c
 int main()
 {
-	if (value == 0) {
-		do_something(); }
+   if (value == 0) {
+      do_something(); }
 }
 ```
 ---
@@ -411,13 +480,13 @@ Do not use one-line control statements without braces.
 ### Right
 ```c
 if (value == 0) {
-	do_something();
+   do_something();
 }
 ```
 #### Wrong
 ```c
 if (value == 0)
-	do_something();
+   do_something();
 
 if (value == 0) do_something();
 ```
@@ -450,7 +519,7 @@ void* ptr = 0;
 ```
 ---
 
-For boolean, true and false: check the project, some use `_Bool`, `1` and `0` while others use `bool`, `true` and `false` (`stdbool.h`). Lately I've been leaning more towards the later.
+For booleans, use `bool`, `true` and `false` (`stdbool.h`).
 
 ---
 
@@ -458,13 +527,13 @@ Tests for true/false should be done without equality comparisons.
 ### Right
 ```c
 if (condition) {
-	// do something
+   // do something
 }
 ```
 #### Wrong
 ```c
 if (condition == true) {
-	// do something
+   // do something
 }
 ```
 ---
@@ -472,34 +541,34 @@ if (condition == true) {
 Tests for null or zero should be done with equality comparisons. This is to differentiate a function that would return false on error:
 ```c
 if (!do_something()) {
-	// error
+   // error
 }
 ```
 from a function that would return non-zero on error (error code):
 ```c
 if (do_something()) {
-	// error?
+   // error?
 }
 ```
 
 ### Right
 ```c
 if (ptr == NULL) {
-	// do something
+   // do something
 }
 
 if (value == 0) {
-	// do something else
+   // do something else
 }
 ```
 #### Wrong
 ```c
 if (ptr) {
-	// do something
+   // do something
 }
 
 if (value) {
-	// do something else
+   // do something else
 }
 ```
 ---
@@ -523,8 +592,8 @@ Every value should be initialised before standard use. This includes globals.
 static int x = 0;
 
 int main() {
-	int y;
-	init_value(&y);
+   int y;
+   init_value(&y);
 }
 ```
 #### Wrong
@@ -532,7 +601,7 @@ int main() {
 static int x;
 
 int main() {
-	int y;
+   int y;
 }
 ```
 ---
@@ -591,7 +660,7 @@ Types should be suffixed with `_t`. There should be no difference between the `s
 ### Right
 ```c
 typedef struct my_object_t {
-	// values
+   // values
 } my_object_t;
 
 my_object_t object;
@@ -599,14 +668,14 @@ my_object_t object;
 #### Wrong
 ```c
 typedef struct my_object_s {
-	// values
+   // values
 } my_object;
 
 my_object object;
 ```
 ---
 
-Exported functions should be named `namespace_group_action`. Static functions should be named `group_action`. If an exported group has a single action (or a single action has no group), you can use two words. A static function must always have two words.
+Exported functions should be named `namespace_group_action`. Static functions should be named `group_action`. If an exported group has a single action (or a single action has no group), you can use two words. A static function must have at least two words.
 ### Right
 ```c
 static void object_dance(my_object_t* object);
@@ -726,7 +795,7 @@ int i = 3 + 5;
 ### Right
 ```c
 if (!some_function()) {
-	// TODO: handle error
+   // TODO: handle error
 }
 ```
 ---
@@ -749,7 +818,7 @@ Do not use ternary operators.
 ```c
 int size = 0;
 if (array != NULL) {
-	size = array->size;
+   size = array->size;
 }
 ```
 #### Wrong
@@ -773,7 +842,7 @@ Do not use inline functions.
 #### Wrong
 ```c
 static inline int add_one(int value) {
-	return value + 1;
+   return value + 1;
 }
 ```
 ---
@@ -799,7 +868,7 @@ local Object = require('classic')
 local my_object = Object:extend()
 
 function doSomething()
-	-- do something
+   -- do something
 end
 ```
 #### Wrong
@@ -809,7 +878,7 @@ local object = require('classic')
 local myObject = Object:extend()
 
 function do_something()
-	-- do something
+   -- do something
 end
 ```
 ---
@@ -820,15 +889,105 @@ Always use local variables. For globals, define them as local at a global scope 
 local x = 3
 
 function someFunction()
-	local y = 5
+   local y = 5
 end
 ```
 #### Wrong
 ```lua
 function someFunction()
-	x = 3
-	y = 5
+   x = 3
+   y = 5
 end
+```
+---
+
+## TypeScript Differences
+
+Along with all the lua-specific rules, the following also apply to TypeScript.
+
+Always use semicolons.
+### Right
+```ts
+let x = 5;
+```
+#### Wrong
+```ts
+let x = 5
+```
+---
+
+Have a single space after a `:` and before a type, but not before the `:`.
+### Right
+```ts
+let x: number;
+```
+#### Wrong
+```ts
+let x:number;
+let x : number;
+```
+---
+
+Only use backtick quotes if necessary (multiline string or inserts).
+### Right
+```ts
+let x = `Multi
+line
+string`;
+
+let y = `x = '${x}'`;
+let z = 'Hello, World!';
+```
+#### Wrong
+```ts
+let z = `Hello, World!`; // back-ticks not required here
+```
+---
+
+Add type to a definition when the type can't be completely inferred from the definition *alone*.
+### Right
+```ts
+let x: number;
+
+let y: number;
+y = 5;
+```
+#### Wrong
+```ts
+let x;
+
+let y; // The type can't be inferred by this line alone
+y = 5;
+```
+---
+
+The same applies for function parameter and return types.
+### Right
+```ts
+function foobar(x: number, y: string): boolean {
+   // do stuff...
+}
+```
+#### Wrong
+```ts
+function foobar(x, y) {
+   // do stuff...
+}
+```
+---
+
+**Exception:** don't add the return type if it is `void`.
+### Right
+```ts
+function foobar(x: number, y: string) {
+   // never returns
+}
+```
+#### Wrong
+```ts
+function foobar(x: number, y: string): void {
+   // never returns
+}
 ```
 ---
 
